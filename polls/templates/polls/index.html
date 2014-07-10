@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>INDEX</title>
+</head>
+<body>
+	<h1>List of Polls Available</h1>
+{% if latest_poll_list %}
+	<ul>
+	{% for poll in latest_poll_list %}
+<!--	link the polls to the choices using django 
+		template tag more of a dynamic setup and uses
+		then namespace url-->
+<!--	<li><a href="/polls/{{ poll.id }}/">{{ poll.
+		question }}</a></li> -->
+		<li><a href="{% url 'polls:detail' poll.id %}"><div>{{ poll.question }}</div></a></li>
+	{% endfor %}
+	</ul>
+{% else %}
+	<p>No polls are available. Why no Polls?</p>
+{% endif %}
+</body>
+</html>

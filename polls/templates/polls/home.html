@@ -1,0 +1,41 @@
+<!doctype html>
+{% load staticfiles %}
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="{% static 'polls/home.css' %}"/>
+		<title>Home</title>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div id="header">
+				<div id="navbar">
+					<ul>
+						<li><a href="{% url 'home' %}">Home</a></li>
+						<li>About</li>
+						<li>My Practices</li>
+						<li>Contact</li>
+					</ul>
+				</div>
+				<h5>Wrecking Balls</h5>
+			</div>	
+			<div>	
+				<h1>HOMING</h1>
+				<div class="poll"><a href="{%url 'polls:index' %}">Vote for Polls:</a></div>
+			</div>
+			<div class="para">
+				<p>
+			Whoever appeals to the law against his
+fellow man is either a fool or a coward.
+Whoever cannot take care of himself without
+that law is both. For a wounded man shall
+say to his assailant, "If I Live, I will kill you.
+If I Die, you are forgiven." Such is the
+Rule of Honor.
+				</p>
+			</div>
+		</div>		
+			<div class="footer">
+				<p>Copyright my ass (c) 2014</p>
+			</div>
+	</body>
+</html>
