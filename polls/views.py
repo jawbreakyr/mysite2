@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.views import generic
+from django.contrib import auth
+from django.core.context_processors import csrf
 
 
 from polls.models import Choice, Poll
@@ -50,6 +52,22 @@ def vote(request, poll_id):
 	return HttpResponseRedirect(reverse('polls:results', args =(p.id,)))
 
 
+def login(request):
+	c = {}
+	c.update(csrf(request))
+	return render(request, 'polls/login.html', c)
 
+
+def authen(request):
+	return render(request, 'polls/authen.html')
+
+def logout(request):
+	return render(request, 'polls/logout.html')
+
+def loggedin(request):
+	return render(request, 'polls/loggedin.html')
+
+def invalid(request):
+	return render(request, 'polls/invalid.html')
 
 # Create your views here.
