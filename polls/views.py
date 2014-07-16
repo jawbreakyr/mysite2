@@ -49,7 +49,7 @@ def vote(request, poll_id):
 		# Always return an HttpResponseRedirect after succesfully dealing
 		# with POST data. This prevents from being posterd twice if a
 		# use hits the Back button.
-	return HttpResponseRedirect(reverse('polls:results', args =(p.id,)))
+	return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
 
 
 def login(request):
@@ -58,16 +58,25 @@ def login(request):
 	return render(request, 'polls/login.html', c)
 
 
-def authen(request):
-	return render(request, 'polls/authen.html')
+def authen_view(request):
+	username = request.POST.get('username', '')
+	password = request.POST.get('password', '')
+	user = auth.authenticate(username=username, password=password)
+
+	if user is not None:
+		auth.login(request, user)
+		return HttpResponseRedirect('/polls/loggedin')
+	else:
+		return HttpResponseRedirect('/polls/invalid')
+
+def loggedin(request):
+	return render(request, 'polls/loggedin.html',
+		{'full_name': request.user.username})
 
 def logout(request):
 	return render(request, 'polls/logout.html')
 
-def loggedin(request):
-	return render(request, 'polls/loggedin.html')
-
-def invalid(request):
+def invalid_login(request):
 	return render(request, 'polls/invalid.html')
 
 # Create your views here.
