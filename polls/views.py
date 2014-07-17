@@ -4,6 +4,8 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 from django.contrib import auth
 from django.core.context_processors import csrf
+from django.contrib.auth import models
+
 
 
 from polls.models import Choice, Poll
@@ -50,6 +52,30 @@ def vote(request, poll_id):
 		# with POST data. This prevents from being posterd twice if a
 		# use hits the Back button.
 	return HttpResponseRedirect(reverse('polls:detail', args=(p.id,)))
+
+# class login(models.User):
+# 	username = models.UserNameField(max_length=30)
+# 	first_name = models.CharField(max_length=30)
+# 	last_name = models.CharField(max_length=30)
+# 	template_name = 'polls/login.html'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def login(request):

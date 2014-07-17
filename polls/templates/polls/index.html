@@ -25,7 +25,7 @@
 					<li><a href="{% url 'polls:detail' poll.id %}"><div>{{ poll.question }}</div></a></li>
 					<p>{{ poll.pub_date }}</p>
 					<p>{{ poll.body }}</p>
-				{% endfor %}
+				{% endfor %}{% csrf_token %}
 				</ul>
 			{% else %}
 				<p>No polls are available. Why no Polls?</p>

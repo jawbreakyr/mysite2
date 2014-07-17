@@ -36,9 +36,10 @@
 		</div>
 		<div class="opt">
 			<div><a href="{% url 'polls:index' %}">Vote for another Poll?</a></div>
-			<div><a href="{% url 'polls:detail' poll.id %}">Vote again for same Poll?</a></div>
 		</div>
 	</div>
+	<script src="{% static 'js/jquery.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 </html>
 
