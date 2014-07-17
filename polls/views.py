@@ -73,10 +73,13 @@ def loggedin(request):
 	return render(request, 'polls/loggedin.html',
 		{'full_name': request.user.username})
 
-def logout(request):
-	return render(request, 'polls/logout.html')
-
 def invalid_login(request):
 	return render(request, 'polls/invalid.html')
+
+
+def logout(request):
+	auth.logout(request)
+	return render(request, 'polls/logout.html')
+
 
 # Create your views here.

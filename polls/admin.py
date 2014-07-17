@@ -12,6 +12,7 @@ class PollAdmin(admin.ModelAdmin):
 	fieldsets = [
 		("Poll Question", 	 {"fields": ["question"]}),
 		("Date Information", {"fields": ["pub_date"], "classes": ["collapse"]}),
+		("Poll Information", {"fields": ["body"]}),
 		]
 	list_display = ("question", "pub_date", "was_published_recently")
 	# filtering admin/polls/poll by question and pub date
