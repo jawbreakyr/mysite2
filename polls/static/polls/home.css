@@ -25,6 +25,7 @@ a {
 h1 {
 	margin-bottom: 25px;
 	margin-left: 10px;
+	display: inline-block;
 }
 
 .poll {
@@ -47,7 +48,7 @@ h1 {
 	position: relative;
 	background-color: #000000;
 	margin-bottom: 0px;
-	margin-top: -60px;
+	margin-top: -50px;
 	padding: 5px;
 }
 
@@ -66,17 +67,6 @@ h1 {
 	margin-left: 10px;
 }
 
-.RF {
-	float: right;
-	margin-right: 30px;
-	display: inline-block;
-}
-
-.LF {
-	float: left;
-
-}
-
 .login {
 	text-align: right;
 	margin-right: 25px;
@@ -85,4 +75,8 @@ h1 {
 
 .p1 {
 	text-align: center;
+}
+
+.display {
+	display: inline-block;
 }

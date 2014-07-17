@@ -53,31 +53,6 @@ def vote(request, poll_id):
 		# use hits the Back button.
 	return HttpResponseRedirect(reverse('polls:detail', args=(p.id,)))
 
-# class login(models.User):
-# 	username = models.UserNameField(max_length=30)
-# 	first_name = models.CharField(max_length=30)
-# 	last_name = models.CharField(max_length=30)
-# 	template_name = 'polls/login.html'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def login(request):
 	c = {}
 	c.update(csrf(request))
@@ -88,6 +63,7 @@ def authen_view(request):
 	username = request.POST.get('username', '')
 	password = request.POST.get('password', '')
 	user = auth.authenticate(username=username, password=password)
+	print request.POST
 
 	if user is not None:
 		auth.login(request, user)
@@ -106,6 +82,9 @@ def invalid_login(request):
 def logout(request):
 	auth.logout(request)
 	return render(request, 'polls/logout.html')
+
+def register(request):
+	return render(request, 'polls/register.html')
 
 
 # Create your views here.
