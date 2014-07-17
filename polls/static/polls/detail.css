@@ -1,0 +1,72 @@
+
+html, body {
+	height: 100%;
+}
+
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+}
+
+
+.header {
+	background-color: blue;
+}
+
+.FL {
+	float: left;
+	margin-left: 50px;
+}
+
+.FR {
+	float: left;
+	margin-left: 50px;
+}
+
+h2 {
+	margin-top: 0px;
+	text-align: center;
+}
+
+li {
+	margin: 3px;
+}
+
+ul {
+	padding-left: 0px;
+	list-style: none;
+}
+
+p {
+	font-family: monospace;
+	color: red;
+	font-size: 50px;
+}
+
+h3 {
+	margin-left: 20px;
+}
+
+h1 {
+	margin-left: 20px;
+}
+
+.click {
+	margin-top: 5px;
+}
+
+.opt {
+	display: block;
+	margin-left: 20px;
+}
+
+.main {
+	display: block;
+	margin-bottom: 30px;
+}
+
+.main:after {
+	content: "";
+	display: block;
+	clear: both;
+}

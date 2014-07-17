@@ -20,7 +20,7 @@ class IndexView(generic.ListView):
 
 	def get_queryset(self):
 		""" Return the last five published polls. """
-		return Poll.objects.order_by('-pub_date')[:5]
+		return Poll.objects.order_by('-pub_date')[:]
 	
 
 class DetailView(generic.DetailView):
@@ -41,7 +41,7 @@ def vote(request, poll_id):
 		# redisplay the poll voting form.
 		return render(request, 'polls/detail.html', {
 			'poll': p,
-			'error_message': "You didn't select a choice.",
+			'error_message': "Pick a choice you fuck'n idiot!",
 			})
 	else:
 		selected_choice.votes += 1
@@ -49,7 +49,7 @@ def vote(request, poll_id):
 		# Always return an HttpResponseRedirect after succesfully dealing
 		# with POST data. This prevents from being posterd twice if a
 		# use hits the Back button.
-	return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
+	return HttpResponseRedirect(reverse('polls:detail', args=(p.id,)))
 
 
 def login(request):
