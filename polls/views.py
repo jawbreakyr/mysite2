@@ -1,17 +1,18 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render, get_object_or_404, redirect 
 from django.core.urlresolvers import reverse
 from django.views import generic
 from django.contrib import auth
 from django.core.context_processors import csrf
 from django.contrib.auth import models
-
+from django.contrib.auth.forms import UserCreationForm
+# from django.views.generic.edit import FormView
 
 
 from polls.models import Choice, Poll
+# from polls.forms import ContactForm
 
-# from django.template import RequestContext, loader
 
+# views using generic CBV
 class HomeView(generic.TemplateView):
 	template_name = 'polls/home.html'
 
@@ -30,9 +31,12 @@ class DetailView(generic.DetailView):
 	template_name = 'polls/detail.html'
 
 
-class ResultsView(generic.DetailView):
-	model = Poll
-	template_name = 'polls/results.html'
+"""Disabled the ResultsView class as it was no longer 
+   needer as the result was already tagged along with 
+   the DetailView"""
+# class ResultsView(generic.DetailView):
+# 	model = Poll
+# 	template_name = 'polls/results.html'
 	
 
 def vote(request, poll_id):
@@ -51,7 +55,9 @@ def vote(request, poll_id):
 		# Always return an HttpResponseRedirect after succesfully dealing
 		# with POST data. This prevents from being posterd twice if a
 		# use hits the Back button.
-	return HttpResponseRedirect(reverse('polls:detail', args=(p.id,)))
+	return redirect('polls:detail', p.id)
+
+
 
 def login(request):
 	c = {}
@@ -63,13 +69,12 @@ def authen_view(request):
 	username = request.POST.get('username', '')
 	password = request.POST.get('password', '')
 	user = auth.authenticate(username=username, password=password)
-	print request.POST
 
 	if user is not None:
 		auth.login(request, user)
-		return HttpResponseRedirect('/polls/loggedin')
+		return redirect('/polls/loggedin')
 	else:
-		return HttpResponseRedirect('/polls/invalid')
+		return redirect('/polls/invalid')
 
 def loggedin(request):
 	return render(request, 'polls/loggedin.html',
@@ -83,8 +88,31 @@ def logout(request):
 	auth.logout(request)
 	return render(request, 'polls/logout.html')
 
-def register(request):
-	return render(request, 'polls/register.html')
+# class ContactView(FormView):
+# 	template_name = 'polls/register.html'
+# 	form_class = ContactForm
+# 	success_url = '/thanks/'
 
+# 	def form_valid(self, form):
+# 		# This method is called when valid form data has been POSTed
+# 		# It should return an HttpResponse
+# 		form.send_email()
+# 		return super(ContactView, self).form_valid(form)
 
+def register_user(request):
+	if request.method == 'POST':
+		form = UserCreationForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return redirect('/polls/register_success')
+
+	args = {}
+	args.update(csrf(request))
+
+	args['form'] = UserCreationForm()
+	print args
+	return render(request, 'polls/register.html', args)
+
+def register_success(request):
+	return render(request, 'polls/register_success.html')
 # Create your views here.
