@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-{% load static %}
+{% load staticfiles %}
 
 <html>
 <head>
 	<link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.css' %}"/>
 	<link type="text/css" rel="stylesheet" href="{% static 'polls/index.css' %}"/>
-	<title>INDEX</title>
+	<title></title>
 </head>
 <body>
 	<div class="wrapper">
@@ -14,22 +14,19 @@
 		</div>
 		<div>	
 			<h2>List of Polls Available</h2>
-			{% if latest_poll_list %}
-				<ul>
-				{% for poll in latest_poll_list %}
-			<!--	link the polls to the choices using django 
-					template tag more of a dynamic setup and uses
-					then namespace url-->
-			<!--	<li><a href="/polls/{{ poll.id }}/">{{ poll.
-					question }}</a></li> -->
-					<li><a href="{% url 'polls:detail' poll.id %}"><div>{{ poll.question }}</div></a></li>
-					<p>{{ poll.pub_date }}</p>
-					<p>{{ poll.body }}</p>
-				{% endfor %}{% csrf_token %}
-				</ul>
-			{% else %}
-				<p>No polls are available. Why no Polls?</p>
-			{% endif %}
+			{% block content %}
+				{% if latest_poll_list %}
+					<ul>
+					{% for poll in latest_poll_list %}
+						<li><a href="{% url 'polls:detail' poll.id %}"><div>{{ poll.question }}</div></a></li>
+						<p>{{ poll.pub_date }}</p>
+						<p>{{ poll.body }}</p>
+					{% endfor %}{% csrf_token %}
+					</ul>
+				{% else %}
+					<p>No polls are available. Why no Polls?</p>
+				{% endif %}
+			{% endblock %}
 		</div>
 	</div>
 	<script src="{% static 'js/jquery.js' %}"></script>

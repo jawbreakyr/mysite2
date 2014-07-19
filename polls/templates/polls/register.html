@@ -1,6 +1,40 @@
-<h1>Register</h1>
-<form action="{% url 'polls:register' %}" method='post'>{% csrf_token %}
-{{ form }}
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.css' %}"/>
+	<link type="text/css" rel="stylesheet" href="{% static 'polls/register.css' %}"/>
+	<title>REGISTER</title>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="header">
+			<h1>Im the fuck'n Header</h1>			
+		</div>
+		<h2>Register to Login to Chuyaness!</h2>
+		<div class="form">
+			<form action="{% url 'polls:register' %}" method='post'>
+				{% csrf_token %}
+				{% if form.non_field_errors %}
+					{{ form.non_field_errors }}
+				{% endif %}
+				<span>Username:</span>
+				<div class="user">{{ form.username }}</div>
+				{% if form.username.errors %}
+					{{ form.username.errors }}
+				{% endif %}
+				<span>Email:</span>
+				<div class="email">{{ form.email }}</div>
+				<span>Password:</span>
+				<div class="password1">{{ form.password1 }}</div>
+				<span>Confirm Password:</span>
+				<div class="password2">{{ form.password2 }}</div>
+				<input type='submit' value='Register:'/>
+			</form>
+		</div>
+	</div>
+	<script src="{% static 'js/jquery.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>
 
-<input type='submit' value='Register'/>
-</form>

@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404, redirect 
+from django.shortcuts import render, get_object_or_404, redirect
 from django.core.urlresolvers import reverse
 from django.views import generic
 from django.contrib import auth
@@ -9,8 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 from polls.models import Choice, Poll
-# from polls.forms import ContactForm
-
+from polls.forms import MyRegistrationForm
 
 # views using generic CBV
 class HomeView(generic.TemplateView):
@@ -75,6 +74,15 @@ def authen_view(request):
 		return redirect('/polls/loggedin')
 	else:
 		return redirect('/polls/invalid')
+	# try:
+	# 	user is not None:
+	# 	auth.login(request, user)
+	# 	return redirect('/polls/loggedin')
+	# except (KeyError, user.DoesNotExist):
+	# 	return render(request, 'polls/login.html', {
+	# 		'user' = user,
+	# 		'err_message': "Invalid User!",
+	# 		})
 
 def loggedin(request):
 	return render(request, 'polls/loggedin.html',
@@ -99,19 +107,35 @@ def logout(request):
 # 		form.send_email()
 # 		return super(ContactView, self).form_valid(form)
 
-def register_user(request):
-	if request.method == 'POST':
-		form = UserCreationForm(request.POST)
+# def register_user(request):
+# 	if request.method == 'POST':
+# 		form = MyRegistrationForm(request.POST)
+# 		if form.is_valid():
+# 			form.save()
+# 			return redirect('/polls/register_success')
+
+# 	args = {}
+# 	args.update(csrf(request))
+
+# 	args['form'] = MyRegistrationForm()
+# 	print args
+# 	return render(request, 'polls/register.html', args)
+
+class RegisterView(generic.TemplateView):
+	template_name = "polls/register.html"
+
+	def get(self, request, *args, **kwargs):
+		context = {"form": MyRegistrationForm()}
+		return self.render_to_response(context)
+
+	def post(self, request, *args, **kwargs):
+		form = MyRegistrationForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return redirect('/polls/register_success')
+			return redirect("polls:loggedin")
+		context = {"form": form}
+		return self.render_to_response(context)
 
-	args = {}
-	args.update(csrf(request))
-
-	args['form'] = UserCreationForm()
-	print args
-	return render(request, 'polls/register.html', args)
 
 def register_success(request):
 	return render(request, 'polls/register_success.html')

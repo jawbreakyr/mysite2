@@ -1,0 +1,34 @@
+.header {
+	background-color: blue;
+}
+
+.form {
+	display: inline-block;
+	margin-left: 40px;
+}
+
+.user {
+	margin-bottom: 5px;
+}
+
+.email {
+	margin-bottom: 5px;	
+}
+
+.password1 {
+	margin-bottom: 5px;
+}
+
+.password2 {
+	margin-bottom: 5px;
+
+}
+
+h1 {
+	margin-top: 0px;
+	text-align: center;
+}
+
+h2 {
+	margin-left: 10px;
+}
