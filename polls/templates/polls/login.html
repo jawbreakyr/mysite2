@@ -1,5 +1,6 @@
-<!DOCTYPE html>
 {% load staticfiles %}
+
+<!doctype html>
 
 <html>
 <head>
@@ -13,19 +14,15 @@
 			<h1>I'm the fuck'n header</h1>
 		</div>
 		<div class="login">
-			{% if err_message %}<p><strong>{{ err_message }}</strong></p>{% endif %}
-			<form action="/polls/authen/" method="post">{% csrf_token %}
-				<div class="user">
-					<label for="username">User name:</label>
-					<input type="text" name="username" value="" id="username">
-				</div>
-				<div class="pass">
-					<label for="password">Password:</label>
-					<input type="password" name="password" value="" id="password">
-				</div>
-				<div>
-					<input type="submit" value="login"/>
-				</div>
+			<form action="{% url 'polls:login' %}" method="post">
+				{% csrf_token %}
+				{{ forms }}
+				
+
+				
+				
+				<div><input type="submit" value="login"/></div>
+			</form>
 		</div>
 		<div>
 			<p>
@@ -37,6 +34,5 @@
 	<script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 </html>
-
 
 {# <a href="{% url 'polls:authen' %}">submit</a> #}

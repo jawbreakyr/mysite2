@@ -10,6 +10,9 @@ from django.contrib.auth.forms import UserCreationForm
 
 from polls.models import Choice, Poll
 from polls.forms import MyRegistrationForm
+from polls.forms import AuthenForm
+
+
 
 # views using generic CBV
 class HomeView(generic.TemplateView):
@@ -59,9 +62,27 @@ def vote(request, poll_id):
 
 
 def login(request):
-	c = {}
+	c = {'forms': AuthenForm}
 	c.update(csrf(request))
 	return render(request, 'polls/login.html', c)
+
+
+# class AuthenView(generic.TemplateView):
+# 	template_name = 'polls/login.html'
+
+# 	def get(self, request, *args, **kwargs):
+# 		context = {"forms": AuthenForm()}
+# 		return self.render_to_response(context)
+
+# 	def post(self, request, *args, **kwargs):
+# 		forms = AuthenForm(request.POST)
+# 		if forms.is_valid():
+# 			forms.save()
+# 			return redirect("polls:loggedin")
+# 		context = {"forms": forms}
+# 		return self.render_to_response(context)
+
+
 
 
 def authen_view(request):
@@ -74,15 +95,7 @@ def authen_view(request):
 		return redirect('/polls/loggedin')
 	else:
 		return redirect('/polls/invalid')
-	# try:
-	# 	user is not None:
-	# 	auth.login(request, user)
-	# 	return redirect('/polls/loggedin')
-	# except (KeyError, user.DoesNotExist):
-	# 	return render(request, 'polls/login.html', {
-	# 		'user' = user,
-	# 		'err_message': "Invalid User!",
-	# 		})
+	
 
 def loggedin(request):
 	return render(request, 'polls/loggedin.html',
@@ -122,6 +135,9 @@ def logout(request):
 # 	return render(request, 'polls/register.html', args)
 
 class RegisterView(generic.TemplateView):
+	"""
+	a far more better view using generic CVB
+	"""
 	template_name = "polls/register.html"
 
 	def get(self, request, *args, **kwargs):
@@ -132,7 +148,7 @@ class RegisterView(generic.TemplateView):
 		form = MyRegistrationForm(request.POST)
 		if form.is_valid():
 			form.save()
-			return redirect("polls:loggedin")
+			return redirect("polls:register_success")
 		context = {"form": form}
 		return self.render_to_response(context)
 

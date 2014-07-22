@@ -38,7 +38,7 @@ h1 {
 	height: auto !important;
 }
 
-#header {
+.header {
 	background-color: #C0C0C0;
 	margin-bottom: 0px;
 

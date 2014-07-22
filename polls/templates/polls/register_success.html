@@ -1,2 +1,30 @@
-<h1>You have registered!</h1>
-<p>Click <a href='/polls/login/'>here</a>to login.</p>
+<!doctype html>
+
+{% load staticfiles %}
+
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="{% static 'css/bootstrap.css' %}"/>
+		<link type="text/css" rel="stylesheet" href="{% static 'polls/register_succ.css' %}"/>
+		<title>
+			Success
+		</title>
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="header">
+				<h1>I'm the fuck'n header</h1>
+			</div>
+			<div>
+				<h1>You'r Registration is Successful.</h1>
+				<h2>Thank You for Registering.</h2>
+				<h3>Click <a href='/polls/login/'>here</a> to login.</h3>
+			</div>
+			<div>
+				<img src="../../static/polls/images/fapp.gif" class="displayed"/>
+			</div>
+		</div>
+		<script src="{% static 'js/jquery.js' %}"></script>
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	</body>
+</html>

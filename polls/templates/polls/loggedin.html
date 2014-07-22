@@ -13,10 +13,12 @@
 		<div class="header">
 			<h1>I'm the fuck'n header!</h1>
 		</div>
-		<div>
-			<h4>Hi {{ full_name }} you are now logged in!</h4>
-			<p>click <a href="{% url 'polls:logout' %}">here</a>to log out..</p>	
+		<div class="content">
+			<div class="name"><h4>Hi {{ full_name }} you are now logged in!</h4></div>
+			<p style="float:right;">click <a href="{% url 'polls:logout' %}">here</a>to log out..</p>	
 		</div>
+		<hr style="margin-top:0px;height:1px;color:#333;background-color:#000000;" />
+		<div></div>
 	</div>
 	<script src="{% static 'js/jquery.js' %}"></script>
 	<script src="{% static 'js/bootstrap.min.js' %}"></script>

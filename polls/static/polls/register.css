@@ -1,6 +1,16 @@
-.header {
-	background-color: blue;
+html, body {
+	height: 100%;
 }
+
+.header {
+	background-color: #C0C0C0;
+}
+
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+}
+
 
 .form {
 	display: inline-block;
@@ -31,4 +41,32 @@ h1 {
 
 h2 {
 	margin-left: 10px;
+}
+
+.noneF {
+	color: #FF0000;
+}
+
+.noneU {
+	color: #FF0000;
+}
+
+.noneE {
+	color: #FF0000;
+}
+
+.noneP {
+	color: #FF0000;
+}
+
+.noneP1 {
+	color: #FF0000;
+}
+
+.float {
+	margin-top: 100px;
+	text-align: justify;
+	margin-left: 20px;
+	margin-right: 20px;
+	/*float: right;*/
 }
