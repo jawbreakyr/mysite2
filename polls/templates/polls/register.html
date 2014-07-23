@@ -14,30 +14,25 @@
 		</div>
 		<h2>Register to Login to Chuyaness!</h2>
 		<div class="form">
-			<form action="{% url 'polls:register' %}" method='post'>
-				{% csrf_token %}
+			<form action="{% url 'polls:register' %}" method='post'>{% csrf_token %}
 				{% if form.non_field_errors %}
 					<span class="noneF">{{ form.non_field_errors }}</span>
 				{% endif %}
-
 				<span>Username:</span>
 				<div class="user">{{ form.username }}</div>
 				{% if form.username.errors %}
 					<span class="noneU">{{ form.username.errors }}</span>
 				{% endif %}
-				
 				<span>Email:</span>
 				<div class="email">{{ form.email }}</div>
 				{% if form.email.errors %}
 					<span class="noneE">{{ form.email.errors }}</span>
 				{% endif %}
-				
 				<span>Password:</span>
 				<div class="password1">{{ form.password1 }}</div>
 				{% if form.password1.errors %}
 					<span class="noneP">{{ form.password1.errors }}</span>
 				{% endif %}
-				
 				<span>Confirm Password:</span>
 				<div class="password2">{{ form.password2 }}</div>
 				{% if form.password2.errors %}

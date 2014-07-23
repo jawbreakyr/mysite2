@@ -62,7 +62,7 @@ def vote(request, poll_id):
 
 
 def login(request):
-	c = {'forms': AuthenForm}
+	c = {}
 	c.update(csrf(request))
 	return render(request, 'polls/login.html', c)
 
