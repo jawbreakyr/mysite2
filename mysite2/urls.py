@@ -4,7 +4,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-	(r'^polls/', include('polls.urls', namespace="polls")),
+	(r'^', include('polls.urls', namespace="polls")),
     (r'^admin/', include(admin.site.urls)),
     # Examples:
     # url(r'^$', 'mysite2.views.home', name='home'),

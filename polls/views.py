@@ -92,13 +92,13 @@ def authen_view(request):
 
 	if user is not None:
 		auth.login(request, user)
-		return redirect('/polls/loggedin')
+		return redirect('loggedin/')
 	else:
 		return redirect('/polls/invalid')
 	
 
 def loggedin(request):
-	return render(request, 'polls/loggedin.html',
+	return render(request, '/loggedin.html',
 		{'full_name': request.user.username})
 
 def invalid_login(request):
