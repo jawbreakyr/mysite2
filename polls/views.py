@@ -92,13 +92,13 @@ def authen_view(request):
 
 	if user is not None:
 		auth.login(request, user)
-		return redirect('loggedin/')
+		return redirect('polls:loggedin')
 	else:
-		return redirect('/polls/invalid')
+		return redirect('polls:invalid')
 	
 
 def loggedin(request):
-	return render(request, '/loggedin.html',
+	return render(request, 'polls/loggedin.html',
 		{'full_name': request.user.username})
 
 def invalid_login(request):
@@ -120,12 +120,12 @@ def logout(request):
 # 		form.send_email()
 # 		return super(ContactView, self).form_valid(form)
 
-# def register_user(request):
-# 	if request.method == 'POST':
-# 		form = MyRegistrationForm(request.POST)
-# 		if form.is_valid():
-# 			form.save()
-# 			return redirect('/polls/register_success')
+	# def register_user(request):
+	# 	if request.method == 'POST':
+	# 		form = MyRegistrationForm(request.POST)
+	# 		if form.is_valid():
+	# 			form.save()
+	# 			return redirect('/polls/register_success')
 
 # 	args = {}
 # 	args.update(csrf(request))
